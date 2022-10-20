@@ -1,8 +1,8 @@
 {
-    "name": "medialabufrj/documentalxyz",
+    "name": "documentalxyz/documentalxyz",
     "extra": {
         "statamic": {
-            "name": "Documental",
+            "name": "Documental.xyz",
             "description": "interactive reports and data storytelling"
         }
     }

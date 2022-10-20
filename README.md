@@ -32,7 +32,7 @@ Check out the full documentation here (in Portuguese): [https://docs.documental.
 
 ## Installing our starter kit
 
-`statamic new documental-dev medialabufrj/documentalxyz`
+`statamic new documental-dev documentalxyz/documentalxyz`
 
 Select ("yes") in the following question:
 
