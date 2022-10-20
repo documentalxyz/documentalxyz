@@ -1,0 +1,528 @@
+sections:
+  content:
+    display: Content
+    fields:
+      -
+        handle: title
+        field:
+          type: text
+          required: true
+          display: Title
+          localizable: true
+          validate:
+            - required
+      -
+        handle: abstract
+        field:
+          type: markdown
+          cheatsheet: false
+          restrict_assets: false
+          display: Abstract
+          localizable: true
+      -
+        handle: cover_image
+        field:
+          type: assets
+          container: main
+          folder: /
+          restrict: false
+          display: 'Cover Image'
+          localizable: true
+      -
+        handle: narrative
+        field:
+          type: section
+          display: Narrative
+          instructions: 'Bellow you can edit all the content of the narrative'
+      -
+        handle: scenario
+        field:
+          type: replicator
+          sets:
+            cover:
+              display: Cover
+              fields:
+                -
+                  handle: no_cover
+                  field:
+                    type: toggle
+                    instructions: 'If true, blocks will have smaller margins'
+                    display: 'No cover'
+                    default: 'false'
+                -
+                  handle: bg_video
+                  field:
+                    type: assets
+                    container: main
+                    folder: /
+                    restrict: false
+                    display: 'Video Background'
+                    width: 50
+                    instructions_position: above
+                    listable: hidden
+                    visibility: visible
+                    mode: list
+                    allow_uploads: true
+                    show_filename: true
+                -
+                  handle: overlay_opacity
+                  field:
+                    type: select
+                    options:
+                      1: 100%
+                      '0.25': 25%
+                      '0.50': 50%
+                      '0.75': 75%
+                    display: 'Overlay Opacity'
+                    default: 25%
+                    show_when:
+                      no_cover: null
+                -
+                  handle: sections
+                  field:
+                    type: replicator
+                    sets:
+                      chapter_intro:
+                        display: 'Chapter intro'
+                        fields:
+                          -
+                            handle: title
+                            field:
+                              type: text
+                              display: Title
+                          -
+                            handle: subtitle
+                            field:
+                              type: text
+                              display: Subtitle
+                      text_block:
+                        display: 'Text block'
+                        fields:
+                          -
+                            handle: markdown_text
+                            field:
+                              type: markdown
+                              cheatsheet: true
+                              restrict_assets: false
+                              display: 'Markdown Text'
+                    display: Sections
+                -
+                  handle: bg_img
+                  field:
+                    type: assets
+                    container: main
+                    folder: /
+                    restrict: false
+                    display: 'Image Background'
+                    width: 50
+                    instructions_position: above
+                    listable: hidden
+                    visibility: visible
+                    mode: list
+                    allow_uploads: true
+                    show_filename: true
+                    max_files: 1
+                    icon: assets
+            map_blocks:
+              display: 'Map Blocks'
+              fields:
+                -
+                  handle: blocks
+                  field:
+                    type: replicator
+                    sets:
+                      map_block:
+                        display: 'Map Block'
+                        fields:
+                          -
+                            handle: lat
+                            field:
+                              type: text
+                              width: 50
+                              display: Lat
+                              default: '-58'
+                          -
+                            handle: lng
+                            field:
+                              type: text
+                              width: 50
+                              display: Lng
+                              default: '-1.9'
+                          -
+                            handle: text
+                            field:
+                              type: markdown
+                              cheatsheet: false
+                              restrict_assets: false
+                              display: Text
+                          -
+                            handle: duration
+                            field:
+                              type: text
+                              width: 25
+                              display: Duration
+                              default: '2000'
+                          -
+                            handle: zoom
+                            field:
+                              type: text
+                              width: 25
+                              display: Zoom
+                              default: '3'
+                          -
+                            handle: bearing
+                            field:
+                              type: text
+                              width: 25
+                              display: Bearing
+                              default: '0'
+                          -
+                            handle: pitch
+                            field:
+                              type: text
+                              width: 25
+                              display: Pitch
+                              default: '0'
+                          -
+                            handle: layers
+                            field:
+                              type: grid
+                              mode: table
+                              fields:
+                                -
+                                  handle: layer
+                                  field:
+                                    type: text
+                                    display: Layer
+                                    instructions_position: above
+                                    listable: true
+                                    visibility: visible
+                                    always_save: false
+                                    input_type: text
+                                    antlers: true
+                                -
+                                  handle: filter_key
+                                  field:
+                                    type: text
+                                    display: 'Filter Key'
+                                    instructions_position: above
+                                    listable: true
+                                    visibility: visible
+                                    always_save: false
+                                    input_type: text
+                                    antlers: false
+                                -
+                                  handle: filter_comparison
+                                  field:
+                                    type: select
+                                    options:
+                                      '==': '== equality'
+                                      '!=': '!= inequality'
+                                      '>': '> greater than'
+                                      '>=': '>= greater than or equal'
+                                      '<': '< less than'
+                                      '<=': '<= less than or equal'
+                                    display: Comparison
+                                    instructions_position: above
+                                    listable: hidden
+                                    visibility: visible
+                                    always_save: false
+                                    multiple: false
+                                    clearable: false
+                                    searchable: true
+                                    taggable: false
+                                    push_tags: false
+                                    cast_booleans: false
+                                -
+                                  handle: filter_value
+                                  field:
+                                    type: text
+                                    display: 'Filter Value'
+                                    instructions_position: above
+                                    listable: true
+                                    visibility: visible
+                                    always_save: false
+                                    input_type: text
+                                    antlers: false
+                              display: Layers
+                              add_row: 'add layer'
+                              instructions_position: above
+                              listable: true
+                              visibility: visible
+                              always_save: false
+                              reorderable: true
+                          -
+                            handle: labels
+                            field:
+                              type: grid
+                              mode: table
+                              fields:
+                                -
+                                  handle: icon
+                                  field:
+                                    type: select
+                                    options:
+                                      x: x
+                                      line: line
+                                      square: square
+                                      circle: circle
+                                      circle-small: circle-small
+                                      circle-big: circle-big
+                                    width: 25
+                                    display: Icon
+                                    default: line
+                                -
+                                  handle: color
+                                  field:
+                                    type: text
+                                    width: 25
+                                    display: Color
+                                -
+                                  handle: text
+                                  field:
+                                    type: text
+                                    width: 50
+                                    display: Text
+                              display: Labels
+                          -
+                            handle: images
+                            field:
+                              type: assets
+                              container: main
+                              folder: /
+                              restrict: false
+                              max_files: 4
+                              display: Image
+                          -
+                            handle: video
+                            field:
+                              type: video
+                              display: Video
+                    display: Blocks
+                    instructions_position: above
+                    listable: hidden
+                    visibility: visible
+                    always_save: false
+                    collapse: false
+                    previews: true
+            article:
+              display: Article
+              fields:
+                -
+                  handle: article_content
+                  field:
+                    type: bard
+                    buttons:
+                      - h3
+                      - bold
+                      - italic
+                      - unorderedlist
+                      - orderedlist
+                      - removeformat
+                      - quote
+                      - anchor
+                      - code
+                    style: sans
+                    spellcheck: true
+                    allow_source: true
+                    allow_internal_links: true
+                    link_noopener: false
+                    link_noreferrer: false
+                    target_blank: false
+                    semantic_elements: false
+                    restrict_assets: false
+                    sets:
+                      image:
+                        display: Image
+                        fields:
+                          -
+                            handle: file
+                            field:
+                              type: assets
+                              container: main
+                              folder: /
+                              restrict: false
+                              display: File
+                          -
+                            handle: caption
+                            field:
+                              type: markdown
+                              cheatsheet: false
+                              restrict_assets: false
+                              display: caption
+                      embed:
+                        display: Embed
+                        fields:
+                          -
+                            handle: code
+                            field:
+                              type: textarea
+                              display: Code
+                              replicator_preview: false
+                      footnote:
+                        display: Footnote
+                        fields:
+                          -
+                            handle: text
+                            field:
+                              type: markdown
+                              cheatsheet: false
+                              restrict_assets: false
+                              display: Text
+                      compare:
+                        display: Compare
+                        fields:
+                          -
+                            handle: before
+                            field:
+                              type: assets
+                              container: main
+                              folder: /
+                              restrict: false
+                              max_files: 1
+                              width: 50
+                              display: Before
+                          -
+                            handle: after
+                            field:
+                              type: assets
+                              container: main
+                              folder: /
+                              restrict: false
+                              max_files: 1
+                              width: 50
+                              display: After
+                          -
+                            handle: before_label
+                            field:
+                              type: text
+                              width: 50
+                              display: 'Before label'
+                          -
+                            handle: after_label
+                            field:
+                              type: text
+                              width: 50
+                              display: 'After label'
+                          -
+                            handle: caption
+                            field:
+                              type: markdown
+                              cheatsheet: false
+                              restrict_assets: false
+                              display: Caption
+                          -
+                            handle: position
+                            field:
+                              type: integer
+                              instructions: '0 to 100%'
+                              display: Position
+                              width: 33
+                    display: 'Article Content'
+            video_gallery:
+              display: 'Video Gallery'
+              fields:
+                -
+                  handle: title
+                  field:
+                    type: text
+                    display: Title
+                -
+                  handle: videos
+                  field:
+                    type: replicator
+                    sets:
+                      video:
+                        display: Video
+                        fields:
+                          -
+                            handle: title
+                            field:
+                              type: text
+                              display: Title
+                              width: 33
+                          -
+                            handle: video_url
+                            field:
+                              type: video
+                              display: 'Video URL'
+                              width: 33
+                          -
+                            handle: video_thumbnail
+                            field:
+                              type: assets
+                              container: main
+                              folder: /
+                              restrict: false
+                              display: 'Video Thumbnail'
+                              width: 33
+                    display: Videos
+          display: Structure
+          localizable: true
+          instructions_position: above
+          listable: hidden
+          visibility: visible
+          collapse: false
+          previews: true
+          always_save: false
+  mapbox:
+    display: Mapbox
+    fields:
+      -
+        handle: mapbox_style
+        field:
+          type: text
+          display: 'Mapbox Style'
+      -
+        handle: mapbox_access_token
+        field:
+          type: text
+          display: 'Mapbox Access Token'
+      -
+        handle: mapbox_start_zoom
+        field:
+          type: text
+          width: 33
+          display: 'Mapbox start zoom'
+          default: '2'
+      -
+        handle: mapbox_start_lat
+        field:
+          type: text
+          width: 33
+          display: 'Mapbox start lat'
+      -
+        handle: mapbox_start_lng
+        field:
+          type: text
+          width: 33
+          display: 'Mapbox start lng'
+  sidebar:
+    display: Sidebar
+    fields:
+      -
+        handle: slug
+        field:
+          type: slug
+          localizable: true
+      -
+        handle: date
+        field:
+          type: date
+          required: true
+          validate:
+            - required
+      -
+        handle: template
+        field:
+          input_type: text
+          antlers: false
+          default: stories
+          display: template
+          type: text
+          icon: text
+          listable: hidden
+          instructions_position: above
+          visibility: read_only
+taxonomies: true
+title: Story

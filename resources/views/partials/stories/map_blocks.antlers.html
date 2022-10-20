@@ -1,0 +1,53 @@
+<section id="section-{{ index }}" data-index="{{ index }}" class="map-blocks">
+
+	{{ blocks }}
+
+		<article
+			data-parent="{{ dscenario:index }}"
+			data-index="{{ index }}"
+			data-lat="{{ lat }}"
+			data-lng="{{ lng }}"
+			data-duration="{{ duration }}"
+			data-zoom="{{ zoom }}"
+			data-bearing="{{ bearing }}"
+			data-pitch="{{ pitch }}"
+			>
+			{{ text }}
+			{{ if labels }}
+			<ul class="map-blocks-labels">
+				{{ labels }}
+					<li>{{ partial src="stories/icon-{icon}" color="{color}" }} {{ text }}</li>
+				{{ /labels }}
+			</ul>
+			{{ /if }}
+			{{ if video }}
+				<div style="padding:56.25% 0 0 0;position:relative;margin-top: 20px;">
+					<iframe
+						src="{{ video | embed_url }}"
+						style="position:absolute;top:0;left:0;width:100%;height:100%;"
+						frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+					</iframe>
+				</div>
+			{{ /if }}
+			{{ if images }}
+				<div class="image-gallery is-multiline is-mobile columns" style="margin: 20px -0.75rem -20px;">
+					{{ assets:images }}
+					<figure class="column is-narrow">
+						<a href="{{ url }}" class="photoswipe" title="{{ caption }}" data-size="{{ width }}x{{ height }}">
+							<img width="128" height="128" src="{{ glide:url width="256" height="256" }}">
+						</a>
+					</figure>
+					{{ /assets:images }}
+				</div>
+			{{ /if }}
+
+			<div class="data-layers">
+				[{{ layers }}{"layer":"{{ layer }}"{{ if filter_key }},"filter_key":"{{ filter_key }}"{{ else}}{{ /if }}{{ if filter_comparison }},"filter_comparison":"{{ filter_comparison }}"{{ else }}{{ /if }}{{ if filter_value }},"filter_value":"{{ filter_value }}"{{ else }}{{ /if }}}{{ unless last }}, {{ /unless }}{{ /layers }}]
+			</div>
+			
+		</article>
+
+	{{ /blocks }}
+
+</section>
+

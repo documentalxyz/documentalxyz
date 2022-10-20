@@ -1,0 +1,15 @@
+title: Stories
+sites:
+  - en
+  - es
+  - pt
+propagate: false
+template: stories
+layout: layouts/layout
+revisions: false
+date: true
+sort_dir: desc
+date_behavior:
+  past: public
+  future: unlisted
+route: '{{ parent_uri }}/{{ slug }}'

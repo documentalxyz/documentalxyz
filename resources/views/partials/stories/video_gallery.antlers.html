@@ -1,0 +1,43 @@
+<section id="section-{{ index }}" class="video-gallery">
+
+	<div class="video-gallery-wrapper">
+
+
+		<h3>{{ title }}</h3>
+
+	{{ if videos | count > 1 }}
+
+		<div class="columns is-multiline">
+			{{ videos }}
+				<div class="column is-one-third">
+					<a href="{{ video_url }}" data-lity>
+						{{ assets:video_thumbnail }}
+							<img src="{{ url }}" />
+						{{ /assets:video_thumbnail }}
+						<div class="video-title">{{ title }}</div>
+					</a>
+				</div>
+			{{ /videos }}
+		</div>
+
+	{{ else }}
+
+		{{ videos }}
+
+			<div style="padding:56.25% 0 0 0;position:relative;">
+				<iframe
+					src="{{ video_url | embed_url }}?portrait=0&title=0&byline=0"
+					style="position:absolute;top:0;left:0;width:100%;height:100%;"
+					frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+				</iframe>
+			</div>
+
+			<div class="video-title">{{ title }}</div>
+			
+		{{ /videos }}
+
+	{{ /if }}
+
+	</div>
+
+</section>

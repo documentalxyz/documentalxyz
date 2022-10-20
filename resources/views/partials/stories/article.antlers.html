@@ -1,0 +1,68 @@
+<section id="section-{{ index }}" class="article">
+
+	<figure class="text-container">
+		
+		{{ article_content }}
+
+			{{ if type == "text" }}
+
+				{{ text }}
+
+			{{ elseif type == "image" }}
+
+				{{ if file|length == 1 }}
+					
+					<figure class="single-figure {{ if caption }}has-caption{{ else }}no-caption{{ /if }}">
+						{{ assets:file }}
+						<img src="{{ url }}">
+						{{ /assets:file }}
+						{{ if caption}}<figcaption>{{ caption | strip_tags:p }}</figcaption>{{ /if }}
+					</figure>
+					
+				{{ else }}
+					<div class="image-gallery columns">
+						{{ assets:file }}
+						<figure class="column is-narrow">
+							<a href="{{ url }}" class="photoswipe" title="{{ caption }}" data-size="{{ width }}x{{ height }}">
+								<img width="128" height="128" src="{{ glide:url width="256" height="256" }}">
+							</a>
+						</figure>
+						{{ /assets:file }}
+					</div>
+				{{ /if }}
+
+			{{ elseif type == "embed" }}
+
+				<div class="embed">
+					
+					{{ code }}
+
+				</div>
+
+			{{ elseif type == "footnote" }}
+
+				<small>
+					
+					{{ text }}
+
+				</small>
+
+
+			{{ elseif type == "compare" }}
+
+				<figure class="article-compare single-figure {{ if caption }}has-caption{{ else }}no-caption{{ /if }}">
+					<div class="juxtapose" data-startingposition="{{ position }}%" data-showlabels="true">
+						{{ assets:before }}<img data-label="{{ before_label }}" src="{{ url }}" />{{ /assets:before }}
+						{{ assets:after }}<img data-label="{{ after_label }}" src="{{ url }}" />{{ /assets:after }}
+					</div>
+					{{ if caption }}<figcaption>{{ caption | strip_tags:p }}</figcaption>{{ /if }}
+				</figure>
+
+
+			{{ /if }}
+
+		{{ /article_content }}
+
+	</div>
+
+</section>

@@ -1,0 +1,68 @@
+<section id="section-{{ index }}" class="cover {{ if no_cover }}no-cover{{ /if }}">
+
+    {{ if bg_video | count > 0 }}
+
+        {{ bg_video }}
+
+			<div class="cover-video">
+				<video autoplay muted loop id="video">
+					<source src="{{ url }}" type="video/mp4">
+				</video>
+			</div>
+
+        {{ /bg_video }}
+		
+	{{ /if }}
+
+	{{ if not no_cover }}
+
+		{{ bg_img }}
+		<div class="cover-image is-placeholder">
+				<img src="{{ url }}" style="object-position: right;">
+		</div>
+		{{ /bg_img }}
+
+		<div class="background-overlay" style="opacity: {{ overlay_opacity }};"></div>
+	{{ /if }}
+	
+
+	<div class="cover-wrapper">
+
+	{{ sections }}
+
+		{{ if type == "chapter_intro" }}
+
+		<div class="cover-block cover-block-chapter-intro">
+			
+			<h2>{{ title }}</h2>
+			<h3>{{ subtitle }}</h3>
+			<p>{{ text }}</p>
+
+		</div>
+
+		{{ elseif type == "site_intro" }}
+
+		<div class="cover-block cover-block-site-intro">
+
+			<h2>{{ title }}</h2>
+			<h3>{{ subtitle }}</h3>
+			
+		</div>
+
+		{{ elseif type == "text_block" }}
+
+		<div class="cover-block cover-block-text">
+			
+			{{ markdown_text | markdown }}
+
+		</div>
+
+		{{ /if }}
+
+
+
+	{{ /sections }}
+
+	</div>
+
+</section>

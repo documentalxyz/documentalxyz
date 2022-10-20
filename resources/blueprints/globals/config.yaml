@@ -1,0 +1,27 @@
+sections:
+  main:
+    display: Main
+    fields:
+      -
+        handle: site_name
+        field:
+          type: text
+          display: 'Site name'
+      -
+        handle: site_description
+        field:
+          type: textarea
+          display: 'Site description'
+          localizable: true
+      -
+        handle: seo_image
+        field:
+          type: assets
+          container: main
+          folder: /
+          restrict: false
+          instructions: 'Image that will be shared in social networks'
+          localizable: true
+          display: 'SEO image'
+taxonomies: true
+title: Globals

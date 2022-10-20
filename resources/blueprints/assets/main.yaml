@@ -1,0 +1,23 @@
+sections:
+  main:
+    display: Main
+    fields:
+      -
+        handle: title
+        field:
+          type: text
+          display: Title
+          localizable: true
+      -
+        handle: alt
+        field:
+          type: text
+          display: Alt
+      -
+        handle: caption
+        field:
+          type: textarea
+          display: Caption
+          localizable: true
+taxonomies: true
+title: Asset

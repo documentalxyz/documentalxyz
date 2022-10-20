@@ -1,0 +1,31 @@
+<div class="site-wrapper">
+    <div class="container">
+        <h1 class="home-title">{{ title }}</h1>
+        <div class="home-text">{{ content }}</div>
+        <nav class="home-locale">
+        {{ locales }}{{ if not first }}
+        <a href="{{ url }}">{{ locale:name }}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        {{ /if }}{{ /locales }}
+        </nav>
+        <section class="list-stories">
+        {{ collection:stories }}
+            <article>
+                <div class="columns">
+                    <div class="column is-narrow">
+                        <a href="{{ url }}">
+                            {{ assets:cover_image }} 
+                            <img src="{{ glide:url width="240" height="160" }}">
+                            {{ /assets:cover_image}}
+                        </a>
+                    </div>
+                    <div class="column">
+                        <h3 class="is-size-3"><a href="{{ url }}">{{ title }}</a></h3>
+                        {{ abstract | markdown }}
+                    </div>
+                
+                </div>
+            </article>
+        {{ /collection:stories }}
+        </section>
+    </div>
+</div>
